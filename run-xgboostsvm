@@ -1,0 +1,32 @@
+#!/bin/bash
+# usage: XGBoostSVM
+#  -eta,--eta <arg>                             eta parameter (0.5)
+#  -gamma,--gamma <arg>                         gamma parameter (0.5)
+#  -max_depth,--max_depth <arg>                 max_depth parameter (6)
+#  -min_child_weight,--min_child_weight <arg>   min_child_weight parameter
+#                                               (0.9)
+#  -nround,--nround <arg>                       number of rounds (4)
+#  -objective,--objective <arg>                 objective parameter
+#                                               (binary:logitraw)
+#  -sampling_method,--sampling_method <arg>     sampling_method parameter
+#                                               (uniform)
+#  -subsample,--subsample <arg>                 subsample parameter (0.6)
+#  -test,--testfile <arg>                       input LIBSVM format file
+#                                               with testing data (required)
+#  -train,--trainfile <arg>                     input LIBSVM format file
+#                                               with training data
+#                                               (required)
+#  -tree_method,--tree_method <arg>             tree_method parameter (auto)
+#  -verbosity,--verbosity <arg>                 verbosity parameter (0)
+
+TRAINFILE=$1
+TESTFILE=$2
+
+echo "##########"
+echo "########## XGBoost train/test on $TRAINFILE and $TESTFILE"
+echo "##########"
+
+java -server -cp "/home/shokin/java/xgboost/build/install/xgboost/lib/*" org.ncgr.xgboost.XGBoostSVM --trainfile=$TRAINFILE --testfile=$TESTFILE $3 $4 $5 $6 $7 $8 $9 
+
+
+
